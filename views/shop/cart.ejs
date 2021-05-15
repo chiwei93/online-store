@@ -1,0 +1,78 @@
+<%- include('../includes/head.ejs') %>
+  <link rel="stylesheet" href="/css/cart.css">
+  <link rel="stylesheet" href="/css/forms.css">
+</head>
+<body>
+  <%- include ('../includes/navigation.ejs') %>
+
+  <main>
+    <% if (cartErrorMsg) { %>
+      <div class="alert error active">
+        <%= cartErrorMsg %>
+      </div>
+    <% } %>
+
+    <ul class="cart__list">
+      <% if (cartItems.length > 0) { %>
+        <% cartItems.forEach(item => { %>
+          <li class="cart__item">
+            <div class="cart__item__image--container">
+              <img src="<%= item.productId.imageUrl %>" alt="<%= item.productId.title %>">
+            </div>
+
+            <div class="cart__product--title"><%= item.productId.title %></div>
+
+            <ul class="cart__btn--list">
+              <li class="cart__btn--item">
+                <button class="cart__btn--minus cart__btn <%= +item.quantity === 1 ? 'disabled' : '' %>" <%= +item.quantity === 1 ? 'disabled' : '' %>>
+                  <i class="fas fa-minus"></i>
+                </button>
+              </li>
+              <li class="cart__btn--item cart__product--quantity">
+                <%= item.quantity %>
+              </li>
+              <li class="cart__btn--item">
+                  <button class="cart__btn--plus cart__btn <%= +item.quantity === +item.productId.quantity ? 'disabled' : '' %>" <%= +item.quantity === +item.productId.quantity ? 'disabled' : '' %>>
+                    <i class="fas fa-plus"></i>
+                  </button>
+              </li>
+            </ul>
+
+            <div class="cart__product--price">RM <%= item.productId.price * item.quantity %></div>
+
+            <div class="cart__btn__delete--container">
+              <form action="/delete-cart-item" method="POST">
+                <input type="hidden" name="_csrf" value="<%=  csrfToken %>">
+                <input type="hidden" name="productId" value="<%= item.productId._id %>">
+                <button class="cart__btn--delete">
+                  <i class="fas fa-times"></i>
+                </button>
+              </form>
+            </div>
+          </li>
+          <% }) %>
+          <div class="cart__checkout--container">
+            <div class="cart__checkout__price">
+              Total Amount
+              <span class="cart__checkout__price--text">RM <%= totalSum %></span>
+            </div>
+      
+            <div>
+              <a class="cart__btn--checkout" href="/checkout">
+                Start Checkout
+              </a>
+            </div>
+
+          </div>
+      <% } else { %>
+        <div class="centered mar-top-4">
+          <p>No products in cart</p>
+        </div>
+      <% } %>
+
+    </ul>
+
+  </main>
+
+  <%- include('../includes/footer.ejs') %>
+<%- include('../includes/end.ejs') %>

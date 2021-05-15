@@ -1,0 +1,388 @@
+.form__search {
+  position: relative;
+}
+
+.form__search input {
+  padding: 0.5em 1em;
+  padding-right: 2em;
+  border-radius: 0.5em;
+  border: 1px solid transparent;
+  box-shadow: 0 0 0.8em 0.1em var(--color-shadow);
+  outline: none;
+  width: 100%;
+  transition: border-color 0.4s;
+  font-size: 0.8rem;
+}
+
+.form__search input:focus {
+  border-color: var(--color-secondary);
+}
+
+.form__search button {
+  all: unset;
+  cursor: pointer;
+  transition: color 0.4s;
+  position: absolute;
+  color: var(--color-black);
+  right: 1em;
+  top: 0.5em;
+  font-size: 0.8rem;
+}
+
+.form__search button:hover,
+.form__search button:active {
+  color: var(--color-secondary);
+}
+
+.searchPage__sort__form {
+  font-size: 0.8rem;
+}
+
+.searchPage__sort__form select {
+  outline: none;
+}
+
+.signup__form,
+.login__form,
+.add_product__form {
+  box-shadow: 0 0 0.5em 0.1em var(--color-shadow);
+  padding: 2em;
+  width: 100%;
+  border-radius: 1em;
+}
+
+.signup__form,
+.add_product__form {
+  margin: 4em auto;
+}
+
+.login__form {
+  margin: 4em auto 1.5em;
+}
+
+.signup__form h2,
+.add_product__form h2,
+.login__form h2 {
+  font-family: 'Merriweather', serif;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 1.5em;
+}
+
+.signup__form__input--container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5em;
+}
+
+.signup__form__input--container label {
+  font-size: 0.9rem;
+  color: var(--color-black);
+}
+
+.signup__form__input--container input,
+.signup__form__input--container textarea {
+  padding: 0.3em 0.5em;
+  border-radius: 0.5em;
+  box-shadow: 0 0 0.5em 0.1em var(--color-shadow);
+  border: 1px solid transparent;
+  margin-top: 0.5em;
+  outline: none;
+  transition: border 0.4s, background-color 0.4s;
+  font-size: 0.8rem;
+}
+
+.signup__form__input--container .form__input--file {
+  opacity: 0;
+  overflow: hidden;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+  z-index: -1000;
+}
+
+.signup__form__input--container .form__input__file--label {
+  cursor: pointer;
+  border: 1px solid var(--color-secondary);
+  align-self: flex-start;
+  display: inline-block;
+  padding: 0.5em 1em;
+  font-size: 0.8rem;
+  color: var(--color-secondary);
+  border-radius: 0.5em;
+  transition: background-color 0.4s, color 0.4s;
+}
+
+.signup__form__input--container .form__input__file--label:hover,
+.signup__form__input--container .form__input__file--label:active {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+}
+
+.form__image--overview {
+  width: 100%;
+  height: 15em;
+  margin-top: 1em;
+  border: 2px dashed var(--color-secondary);
+  border-radius: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-secondary);
+}
+
+.form__image--overview img {
+  max-width: 100%;
+  max-height: 15em;
+  padding: 1em;
+}
+
+.signup__form__input--container input.error,
+.signup__form__input--container textarea.error {
+  border: 1px solid var(--color-red);
+  background-color: var(--color-light-red);
+}
+
+.signup__form__input--container p {
+  color: var(--color-red);
+  font-size: 0.7rem;
+  margin-bottom: 0;
+  margin-top: 0.8em;
+}
+
+.signup__form__input--container input:focus,
+.signup__form__input--container textarea:focus {
+  border: 1px solid var(--color-secondary);
+}
+
+.signup__form__input--container textarea {
+  resize: none;
+}
+
+.signup__form__btn--container {
+  text-align: center;
+}
+
+.signup__form__btn--submit {
+  all: unset;
+  border: 1px solid var(--color-secondary);
+  border-radius: 0.5em;
+  padding: 0.5em 1.5em;
+  color: var(--color-secondary);
+  font-size: 0.8rem;
+  transition: color 0.4s, background-color 0.4s;
+}
+
+.signup__form__btn--submit:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+}
+
+.login__form__btn--container {
+  margin-top: 3em;
+  text-align: center;
+}
+
+.signup__form__input--container .review__rating {
+  font-size: 0.9rem;
+  margin-bottom: 0.5em;
+  color: var(--color-black);
+}
+
+.review__rating--list,
+.category--list {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.review__rating--item {
+  margin-bottom: 1em;
+}
+
+.review__rating--item:not(:last-child) {
+  margin-right: 1em;
+}
+
+.rating__radio__btn--container input {
+  opacity: 0;
+  position: absolute;
+  z-index: -500;
+}
+
+.rating__radio__btn--container label {
+  box-shadow: 0 0 0.5em 0.1em var(--color-shadow);
+  padding: 0.5em 0.8em;
+  border-radius: 0.5em;
+  font-size: 0.9rem;
+  border: 1px solid transparent;
+  transition: border-color 0.4s, color 0.4s;
+  cursor: pointer;
+}
+
+.rating__radio__btn--container label.active {
+  border-color: var(--color-secondary);
+  color: var(--color-secondary);
+}
+
+.rating__radio__btn--container label i {
+  font-size: 0.7rem;
+}
+
+.alert,
+.alert-product {
+  border: 1px solid transparent;
+  border-radius: 0.5em;
+  font-size: 0.9rem;
+  width: 100%;
+  padding: 1em;
+  margin: 2em auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+}
+
+.alert.active,
+.alert-product.active {
+  opacity: 1;
+}
+
+.alert.error,
+.alert-product.error {
+  border-color: var(--color-red);
+  background-color: var(--color-light-red);
+  color: var(--color-red);
+}
+
+.alert.success,
+.alert-product.success {
+  border-color: var(--color-green);
+  background-color: var(--color-light-green);
+  color: var(--color-green);
+}
+
+.forgotten-password__container {
+  text-align: center;
+  margin-bottom: 4em;
+  font-size: 0.9rem;
+}
+
+.forgotten-password__container a {
+  color: var(--color-secondary);
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+}
+
+.forgotten-password__container a::after {
+  content: '';
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-secondary);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  transform: scaleX(0);
+  transition: transform 0.4s;
+}
+
+.forgotten-password__container a:hover::after,
+.forgotten-password__container a:active::after {
+  transform: scaleX(1);
+}
+
+@media only screen and (min-width: 500px) {
+  .signup__form,
+  .add_product__form,
+  .login__form,
+  .alert,
+  .alert-product {
+    width: 80%;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .form__search {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .searchPage__sort__form {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (min-width: 700px) {
+  .signup__form,
+  .add_product__form,
+  .login__form,
+  .alert,
+  .alert-product {
+    width: 70%;
+  }
+
+  .signup__form__input--container label,
+  .signup__form__input--container input,
+  .signup__form__btn--submit,
+  .signup__form__input--container .review__rating,
+  .signup__form__input--container .form__input__file--label {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .form__search {
+    width: 70%;
+  }
+
+  .form__search input,
+  .form__search button {
+    font-size: 1rem;
+  }
+
+  .signup__form,
+  .login__form,
+  .alert {
+    width: 45%;
+    padding: 2em 3em;
+  }
+
+  .alert,
+  .alert-product {
+    font-size: 1.1rem;
+    padding: 1em;
+  }
+
+  .add_product__form,
+  .alert-product {
+    width: 55%;
+    padding: 2em 3em;
+  }
+
+  .signup__form__input--container label,
+  .signup__form__input--container .review__rating {
+    font-size: 1.2rem;
+  }
+
+  .signup__form__input--container input,
+  .signup__form__input--container textarea {
+    font-size: 1rem;
+  }
+
+  .signup__form__input--container p {
+    font-size: 0.8rem;
+  }
+
+  .forgotten-password__container {
+    font-size: 1.1rem;
+  }
+}
+
+@media only screen and (min-width: 1100px) {
+  .form__search {
+    width: 60%;
+  }
+}

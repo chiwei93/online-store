@@ -1,0 +1,124 @@
+.detailPage__image--container {
+  position: relative;
+  text-align: center;
+}
+
+.detailPage__image--container img {
+  max-width: 80%;
+}
+
+.detailPage__detail--container {
+  margin: 2em 0;
+}
+
+.detailPage__detail--container h3 {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.detailPage__detail--container p {
+  color: var(--color-gray);
+  text-align: center;
+}
+
+.detailPage__price--container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detailPage__price {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.detailPage__review--container {
+  margin: 4em 0;
+}
+
+.detailPage__review--container h3 {
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.detailPage__review--list,
+.detailPage__reviewCard--rating-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.detailPage__review--list {
+  margin-top: 2em;
+  position: relative;
+}
+
+.detailPage__review--item {
+  box-shadow: 0 0 0.7em 0.1em var(--color-shadow);
+  padding: 2em;
+  border-radius: 1em;
+}
+
+.detailPage__review--item:not(:last-child) {
+  margin-bottom: 1em;
+}
+
+.detailPage__reviewCard--name {
+  color: var(--color-gray);
+  font-size: 0.9rem;
+  text-transform: capitalize;
+}
+
+.detailPage__reviewCard--rating-list {
+  display: flex;
+  margin-bottom: 1em;
+}
+
+@media only screen and (min-width: 800px) {
+  .detailPage__content--container {
+    display: flex;
+  }
+
+  .detailPage__image--container {
+    flex: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .detailPage__detail--container {
+    flex: 0.5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .detailPage__detail--container h3 {
+    margin-bottom: 2em;
+    font-size: 1.5rem;
+  }
+
+  .detailPage__detail--container p {
+    margin-bottom: 1.5em;
+  }
+
+  .detailPage__price--container {
+    margin-top: 2em;
+  }
+
+  .detailPage__review--container h3 {
+    font-size: 1.2rem;
+  }
+
+  .detailPage__review--item {
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  .detailPage__reviewCard--name {
+    font-size: 1rem;
+  }
+
+  .detailPage__reviewCard--description {
+    font-size: 1.1rem;
+  }
+}

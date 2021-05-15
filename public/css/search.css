@@ -1,0 +1,116 @@
+.searchPage__header h2 {
+  text-align: center;
+  color: var(--color-black);
+}
+
+.searchPage__results--header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1em 0 2em;
+}
+
+.searchPage__results--header p {
+  font-size: 0.75rem;
+  margin-bottom: 0;
+}
+
+.searchPage__searchTerm {
+  color: var(--color-secondary);
+}
+
+.searchPage__product--container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1.5em;
+  margin-bottom: 2em;
+}
+
+.searchPage__pagination--container {
+  margin-bottom: 1.5em;
+  margin-top: auto;
+  border-top: 1px solid var(--color-primary);
+  padding: 2em 0 0;
+}
+
+.searchPage__pagination--list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.searchPage__pagination__list--item:not(:last-child) {
+  margin-right: 2em;
+}
+
+.searchPage__page--link {
+  text-decoration: none;
+  transition: 0.4s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  color: var(--color-black);
+}
+
+.searchPage__page--link:hover,
+.searchPage__page--link:active,
+.searchPage__page--link.active {
+  color: var(--color-secondary);
+}
+
+.searchPage__page--link::after {
+  content: '';
+  width: 120%;
+  height: 3px;
+  background-color: var(--color-secondary);
+  transform: scaleX(0);
+  transition: 0.3s;
+}
+
+.searchPage__page--link:hover::after,
+.searchPage__page--link:active::after {
+  transform: scaleX(1);
+}
+
+.searchPage__page--link.active::after {
+  transform: scaleX(1);
+}
+
+.searchPage__page--controls {
+  background-color: transparent;
+  text-decoration: none;
+  width: 1.8rem;
+  height: 1.8rem;
+  padding: 0.3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--color-black);
+  transition: 0.4s;
+}
+
+.searchPage__page--controls:hover,
+.searchPage__page--controls:active {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+}
+
+@media only screen and (min-width: 600px) {
+  .searchPage__header h2 {
+    font-size: 2.5rem;
+  }
+
+  .searchPage__results--header p {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (min-width: 700px) {
+  .searchPage__product--container {
+    grid-template-columns: repeat(auto-fit, minmax(18em, 1fr));
+  }
+}

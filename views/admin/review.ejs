@@ -1,0 +1,86 @@
+<%- include('../includes/head.ejs') %>
+  <link rel="stylesheet" href="/css/forms.css">
+</head>
+<body>
+  <%- include ('../includes/navigation.ejs') %>
+
+  <main>
+    <form action="/admin/review" method="POST" class="add_product__form">
+      <h2>Review</h2>
+
+      <div class="signup__form__input--container">
+        <label for="review">Review:</label>
+        <textarea name="review" id="review" rows="5" class="<%= validationErrors.find(e => e.param === 'review') ? 'error' : '' %>"><%= formValues.review %></textarea>
+        <% if (validationErrors.find(e => e.param === 'review')) { %>
+          <p><%= validationErrors.find(e => e.param === 'review').msg %></p>
+        <% } %>
+      </div>
+
+      <div class="signup__form__input--container">
+        <p class="review__rating">Rating:</p>
+        <ul class="review__rating--list">
+          <li class="review__rating--item">
+            <div class="rating__radio__btn--container">
+              <input type="radio" id="1" name="rating" value="1" <%= +formValues.rating === 1 ? 'checked' : '' %>>
+              <label for="1" class="rating__radio--btn <%= +formValues.rating === 1 ? 'active' : '' %>">
+                1
+                <i class="fas fa-star"></i>
+              </label>
+            </div>
+          </li>
+          <li class="review__rating--item">
+            <div class="rating__radio__btn--container">
+              <input type="radio" id="2" name="rating" value="2" <%= +formValues.rating === 2 ? 'checked' : '' %>>
+              <label for="2" class="rating__radio--btn <%= +formValues.rating === 2 ? 'active' : '' %>">
+                2
+                <i class="fas fa-star"></i>
+              </label>
+            </div>
+          </li>
+          <li class="review__rating--item">
+            <div class="rating__radio__btn--container">
+              <input type="radio" id="3" name="rating" value="3" <%= +formValues.rating === 3 ? 'checked' : '' %>>
+              <label for="3" class="rating__radio--btn <%= +formValues.rating === 3 ? 'active' : '' %>">
+                3
+                <i class="fas fa-star"></i>
+              </label>
+            </div>
+          </li>
+          <li class="review__rating--item">
+            <div class="rating__radio__btn--container">
+              <input type="radio" id="4" name="rating" value="4" <%= +formValues.rating === 4 ? 'checked' : '' %>>
+              <label for="4" class="rating__radio--btn <%= +formValues.rating === 4 ? 'active' : '' %>">
+                4
+                <i class="fas fa-star"></i>
+              </label>
+            </div>
+          </li>
+          <li class="review__rating--item">
+            <div class="rating__radio__btn--container">
+              <input type="radio" id="5" name="rating" value="5" <%= +formValues.rating === 5 ? 'checked' : '' %>>
+              <label for="5" class="rating__radio--btn <%= +formValues.rating === 5 ? 'active' : '' %>">
+                5
+                <i class="fas fa-star"></i>
+              </label>
+            </div>
+          </li>
+        </ul>
+        <% if (hasRatingError) { %>
+          <p style="margin-top: -1em;">Please choose one of the options above</p>
+        <% } %>
+      </div>
+
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+      <input type="hidden" name="productId" value="<%= productId %>">
+
+      <input type="hidden" name="orderId" value="<%= orderId %>">
+
+      <div class="login__form__btn--container">
+          <button class="signup__form__btn--submit">Write a Review</button>
+      </div>
+    </form>
+  </main>
+
+  <%- include('../includes/footer.ejs') %>
+<%- include('../includes/end.ejs') %>

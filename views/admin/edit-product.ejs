@@ -1,0 +1,128 @@
+<%- include('../includes/head.ejs') %>
+  <link rel="stylesheet" href="/css/forms.css">
+</head>
+<body>
+  <%- include ('../includes/navigation.ejs') %>
+
+  <main>
+    <% if (imageErrorMsg) { %>
+      <div class="alert error active">
+        <%= imageErrorMsg %>
+      </div>
+    <% } %>
+
+    <form action="/admin/<% if (!isEditing) {%>add-product<%} else {%>edit-product<%} %>?_csrf=<%= csrfToken %>" method="POST" class="add_product__form" enctype="multipart/form-data">
+      <h2><%= isEditing ? 'Edit Product' : 'Add Product' %></h2>
+
+      <div class="signup__form__input--container">
+        <label for="title">Title:</label>
+        <input type="text" name="title" id="title" class="<%= validationErrors.find(e => e.param === 'title') ? 'error' : '' %>" value="<%= formValues.title %>">
+        <% if (validationErrors.find(e => e.param === 'title')) { %>
+          <p><%= validationErrors.find(e => e.param === 'title').msg %></p>
+        <% } %>
+      </div>
+
+      <div class="signup__form__input--container">
+        <label for="price">Price:</label>
+        <input type="number" step="0.01" name="price" id="price" class="<%= validationErrors.find(e => e.param === 'price') ? 'error' : '' %>" value="<%= formValues.price %>">
+        <% if (validationErrors.find(e => e.param === 'price')) { %>
+          <p><%= validationErrors.find(e => e.param === 'price').msg %></p>
+        <% } %>
+      </div>
+
+      <div class="signup__form__input--container">
+        <label for="description">Description:</label>
+        <textarea name="description" id="description" rows="7" class="<%= validationErrors.find(e => e.param === 'description') ? 'error' : '' %>"><%=formValues.description%></textarea>
+        <% if (validationErrors.find(e => e.param === 'description')) { %>
+          <p><%= validationErrors.find(e => e.param === 'description').msg %></p>
+        <% } %>
+      </div>
+
+      <div class="signup__form__input--container">
+        <label for="price">Quantity:</label>
+        <input type="number" name="quantity" id="quantity" class="<%= validationErrors.find(e => e.param === 'quantity') ? 'error' : '' %>" value="<%= formValues.quantity %>">
+        <% if (validationErrors.find(e => e.param === 'quantity')) { %>
+          <p><%= validationErrors.find(e => e.param === 'quantity').msg %></p>
+        <% } %>
+      </div>
+
+      <div class="signup__form__input--container">
+        <p class="review__rating">Category:</p>
+        <ul class="category--list">
+          <li class="review__rating--item">
+            <div class="rating__radio__btn--container">
+              <input type="radio" id="phone" name="category" value="phone" <%= formValues.category === 'phone' ? 'checked' : '' %>>
+              <label for="phone" class="rating__radio--btn <%= formValues.category === 'phone' ? 'active' : '' %>">
+                Phone
+              </label>
+            </div>
+          </li>
+          <li class="review__rating--item">
+            <div class="rating__radio__btn--container">
+              <input type="radio" id="laptop" name="category" value="laptop" <%= formValues.category === 'laptop' ? 'checked' : '' %>>
+              <label for="laptop" class="rating__radio--btn <%= formValues.category === 'laptop' ? 'active' : '' %>">
+                Laptop
+              </label>
+            </div>
+          </li>
+          <li class="review__rating--item">
+            <div class="rating__radio__btn--container">
+              <input type="radio" id="game_console" name="category" value="game console" <%= formValues.category === 'game console' ? 'checked' : '' %>>
+              <label for="game_console" class="rating__radio--btn <%= formValues.category === 'game console' ? 'active' : '' %>">
+                Game Console
+              </label>
+            </div>
+          </li>
+          <li class="review__rating--item">
+            <div class="rating__radio__btn--container">
+              <input type="radio" id="desktop" name="category" value="desktop" <%= formValues.category === 'desktop' ? 'checked' : '' %>>
+              <label for="desktop" class="rating__radio--btn <%= formValues.category === 'desktop' ? 'active' : '' %>">
+                Desktop
+              </label>
+            </div>
+          </li>
+          <li class="review__rating--item">
+            <div class="rating__radio__btn--container">
+              <input type="radio" id="monitor" name="category" value="monitor" <%= formValues.category === 'monitor' ? 'checked' : '' %>>
+              <label for="monitor" class="rating__radio--btn <%= formValues.category === 'monitor' ? 'active' : '' %>">
+                Monitor
+              </label>
+            </div>
+          </li>
+          <li class="review__rating--item">
+            <div class="rating__radio__btn--container">
+              <input type="radio" id="accessories" name="category" value="accessories" <%= formValues.category === 'accessories' ? 'checked' : '' %>>
+              <label for="accessories" class="rating__radio--btn <%= formValues.category === 'accessories' ? 'active' : '' %>">
+                Accessories
+              </label>
+            </div>
+          </li>
+        </ul>
+        <% if (hasCategoryValidationError) { %>
+          <p style="margin-top: -1em;">Please choose one of the options above</p>
+        <% } %>
+      </div>
+
+      <div class="signup__form__input--container">
+        <label for="image" class="form__input__file--label">Upload Image</label>
+        <input type="file" name="image" id="image" class="form__input--file">
+
+        <div class="form__image--overview">
+          Upload to see image here
+        </div>
+      </div>
+
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+      <% if (isEditing) { %>
+        <input type="hidden" name="productId" value="<%= productId %>">
+      <% } %>
+
+      <div class="login__form__btn--container">
+          <button class="signup__form__btn--submit"><%= isEditing ? 'Edit Product' : 'Add Product' %></button>
+      </div>
+    </form>
+  </main>
+
+  <%- include('../includes/footer.ejs') %>
+<%- include('../includes/end.ejs') %>

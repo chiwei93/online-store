@@ -1,0 +1,33 @@
+<div class="searchPage__pagination--container">
+  <ul class="searchPage__pagination--list">
+    <li class="searchPage__pagination__list--item">
+      <a href="?page=1" class="searchPage__page--controls">
+        <i class="fas fa-angle-double-left"></i>
+      </a>
+    </li>
+    <% if (hasPreviousPage && previousPage !== currentPage) { %>
+      <li class="searchPage__pagination__list--item">
+        <a href="?page=<%= previousPage %>" class=" searchPage__page--link">
+          <%= previousPage %>
+        </a>
+      </li>
+    <% } %>
+    <li class="searchPage__pagination__list--item">
+      <a href="?page=<%= currentPage %>" class=" searchPage__page--link active">
+        <%= currentPage %>
+      </a>
+    </li>
+    <% if (hasNextPage && nextPage !== currentPage) { %>
+      <li class="searchPage__pagination__list--item">
+        <a href="?page=<%= nextPage %>" class=" searchPage__page--link">
+          <%= nextPage %>
+        </a>
+      </li>
+    <% } %>
+    <li class="searchPage__pagination__list--item">
+      <a href="?page=<%= lastPage %>" class="searchPage__page--controls">
+        <i class="fas fa-angle-double-right"></i>
+      </a>
+    </li>
+  </ul>
+</div>

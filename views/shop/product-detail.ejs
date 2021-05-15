@@ -1,0 +1,82 @@
+<%- include('../includes/head.ejs') %>
+  <link rel="stylesheet" href="/css/product-detail.css">
+  <link rel="stylesheet" href="/css/forms.css">
+  <link rel="stylesheet" href="/css/product.css">
+</head>
+<body>
+  <%- include('../includes/navigation.ejs') %>
+
+  <main>
+    <div class="searchBar__container">
+      <%- include('../includes/searchBar.ejs') %>
+    </div>
+
+    <div class="detailPage__content--container">
+      <div class="detailPage__image--container">
+        <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
+      </div>
+
+      <div class="detailPage__detail--container">
+        <h3><%= product.title %></h3>
+
+        <p>
+          <%= product.description %>
+        </p>
+
+        <ul class="product__card__rating--list">
+          <%- include('../includes/rating.ejs', {product}) %>
+        </ul>
+
+        <div class="detailPage__price--container">
+          <div class="detailPage__price">
+            RM <%= product.price %>
+          </div>
+
+          <% if (isAuthenticated) { %>
+            <%- include('../includes/add-to-cart.ejs', {product: product}) %>
+          <% } %>
+        </div>
+      </div>
+    </div>
+
+    <div class="detailPage__review--container">
+      <h3>Rating and Review (<%= reviews.length %>)</h3>
+
+      <% if (reviews.length > 0) { %>
+        <ul class="detailPage__review--list">
+          <% reviews.forEach(review => { %>
+            <li class="detailPage__review--item">
+                <p class="detailPage__reviewCard--name">
+                  <%= review.userId.name %>
+                </p>
+    
+                <ul class="detailPage__reviewCard--rating-list">
+                  <% for(let i = 0; i <= 5; i++) { %>
+                    <% if (review.rating >= i) { %>
+                      <li class="product__card__rating--item">
+                        <i class="fas fa-star star--filled"></i>
+                      </li>
+                    <% } else { %>
+                      <li class="product__card__rating--item">
+                        <i class="far fa-star star--reg"></i>
+                      </li>
+                    <% } %>
+                  <% } %>
+                </ul>
+    
+                <p class="detailPage__reviewCard--description">
+                  <%= review.review %>
+                </p>
+            </li>
+          <% }) %>
+        </ul>
+      <% } else { %>
+        <div class="centered mar-top-4">
+          No reviews found
+        </div>
+      <% } %>
+    </div>
+  </main>
+
+  <%- include('../includes/footer.ejs') %>
+<%- include('../includes/end.ejs') %>

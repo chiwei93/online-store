@@ -1,0 +1,74 @@
+<%- include('../includes/head.ejs') %>
+  <link rel="stylesheet" href="/css/forms.css">
+  <link rel="stylesheet" href="/css/product.css">
+  <link rel="stylesheet" href="/css/search.css">
+</head>
+<body>
+  <%- include ('../includes/navigation.ejs') %>
+
+  <main>
+    <div class="searchBar__container">
+      <%- include('../includes/searchBar.ejs') %>
+    </div>
+
+    <h3 class="productsPage__heading">Your Products</h3>
+
+    <div class="searchPage__product--container">
+      <% if (products.length > 0) { %>
+        <% products.forEach(product => { %>
+          <article class="product__card">
+            <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
+    
+            <ul class="product__card__list">
+              <li class="product__card__list--item">
+                <p class="product__card__title"><%= product.title %></p>
+              </li>
+              <li class="product__card__list--item">
+                <p class="product__card__price">RM <%= product.price %></p>
+              </li>
+              <li class="product__card__list--item">
+                <p class="product__card__description">
+                  <%= product.description %>
+                </p>
+              </li>
+              <li class="product__card__list--item">
+                <ul class="product__card__rating--list">
+                  <%- include('../includes/rating.ejs', {product}) %>
+                </ul>
+              </li>
+            </ul>
+    
+            <div class="product__card__btn--container">
+              <a href="/admin/edit-product/<%= product._id %>" class="product__card__btn">
+                Edit
+              </a>
+    
+              <form action="/admin/delete-product" method="POST" class="product__card__form">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <input type="hidden" name="productId" value="<%= product._id %>">
+                <button class="product__card__btn">Delete</button>
+              </form>
+            </div>
+          </article>
+        <% }) %>
+      <% } else { %>
+        <div class="centered mar-top-2">
+          <p>No products found!</p>
+        </div>
+      <% } %>
+    </div>
+
+    <div class="productsPage__btn--container">
+      <p>Have a product to sell? Click below to add product.</p>
+      <a href="/admin/add-product" class="product__card__btn">
+        Add Product
+      </a>
+    </div>
+
+    <% if (products.length > 0) { %>
+      <%- include('../includes/pagination.ejs', {hasPreviousPage, previousPage, currentPage, hasNextPage, nextPage, lastPage}) %>
+    <% } %>
+  </main>
+
+  <%- include('../includes/footer.ejs') %>
+<%- include('../includes/end.ejs') %>

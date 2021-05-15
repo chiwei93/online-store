@@ -1,0 +1,62 @@
+<%- include('../includes/head.ejs') %>
+  <link rel="stylesheet" href="/css/cart.css">
+</head>
+<body>
+  <%- include ('../includes/navigation.ejs') %>
+
+  <main>
+    <h2 class="checkoutPage__title">Checkout Page</h2>
+    <ul class="cart__list">
+      <% if (cartItems.length > 0) { %>
+        <% cartItems.forEach(item => { %>
+          <li class="cart__item">
+            <div class="cart__item__image--container">
+              <img src="<%= item.productId.imageUrl %>" alt="<%= item.productId.title %>">
+            </div>
+
+            <div class="cart__product--title"><%= item.productId.title %></div>
+
+            <ul class="cart__btn--list">
+              <li class="cart__btn--item cart__product--quantity">
+                <%= item.quantity %>
+              </li>
+            </ul>
+
+            <div class="cart__product--price">RM <%= item.productId.price * item.quantity %></div>
+          </li>
+          <% }) %>
+          <div class="cart__checkout--container">
+            <div class="cart__checkout__price">
+              Total Amount
+              <span class="cart__checkout__price--text">RM <%= totalSum %></span>
+            </div>
+      
+            <div>
+              <button class="cart__btn--checkout" id="checkout-button">
+                Checkout Now
+              </button>
+            </div>
+
+          </div>
+      <% } else { %>
+        <div class="centered mar-top-4">
+          <p>No products in cart</p>
+        </div>
+      <% } %>
+
+    </ul>
+
+  </main>
+
+  <%- include('../includes/footer.ejs') %>
+
+  <script type="text/javascript">
+    const stripe = Stripe("pk_test_51IpEStCi28pGVngNcVa7H809QpAMnc3WQ8z88mIZVjJm44a32jN1gwzEcYxoM7pYwAYaAtluTCKl4NkbToHhFaeX00st5FKyVN");
+
+    const checkoutButton = document.getElementById("checkout-button");
+    
+    checkoutButton.addEventListener("click", function () {
+      stripe.redirectToCheckout({ sessionId: '<%= sessionId %>' })
+    });
+  </script>
+<%- include('../includes/end.ejs') %>

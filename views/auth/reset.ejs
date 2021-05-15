@@ -1,0 +1,40 @@
+<%- include('../includes/head.ejs') %>
+  <link rel="stylesheet" href="/css/forms.css">
+</head>
+<body>
+  <%- include ('../includes/navigation.ejs') %>
+
+  <main>
+    <form action="/new-password" method="POST" class="signup__form" novalidate>
+      <h2>Reset Password</h2>
+
+      <div class="signup__form__input--container">
+        <label for="password">New Password:</label>
+        <input type="password" name="password" id="password" class="<%= validationErrors.find(e => e.param === 'password') ? 'error' : '' %>" value="<%= formValues.password %>">
+        <% if (validationErrors.find(e => e.param === 'password')) { %>
+          <p><%= validationErrors.find(e => e.param === 'password').msg %></p>
+        <% } %>
+      </div>
+
+      <div class="signup__form__input--container">
+        <label for="password">Confirm New Password:</label>
+        <input type="password" name="passwordConfirm" id="passwordConfirm" class="<%= validationErrors.find(e => e.param === 'passwordConfirm') ? 'error' : '' %>" value="<%= formValues.passwordConfirm %>">
+        <% if (validationErrors.find(e => e.param === 'passwordConfirm')) { %>
+          <p><%= validationErrors.find(e => e.param === 'passwordConfirm').msg %></p>
+        <% } %>
+      </div>
+
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+      <input type="hidden" name="resetToken" value="<%= resetToken %>">
+
+      <input type="hidden" name="userId" value="<%= userId %>">
+
+      <div class="login__form__btn--container">
+        <button class="signup__form__btn--submit">Reset Password</button>
+      </div>
+    </form>
+  </main>
+
+  <%- include('../includes/footer.ejs') %>
+<%- include('../includes/end.ejs') %>

@@ -1,0 +1,108 @@
+.ordersPage__container {
+  margin: 2em 0 3em;
+}
+
+.ordersPage__container h3 {
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+
+.ordersPage__orders--container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 2em;
+}
+
+.ordersPage__order--card {
+  box-shadow: 0 0 0.5em 0.1em var(--color-shadow);
+  padding: 1em;
+  border-radius: 0.5em;
+}
+
+.ordersPage__order--card p {
+  font-weight: bold;
+}
+
+.ordersPage__order__product--list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.ordersPage__order__product--item {
+  display: flex;
+  align-items: center;
+}
+
+.ordersPage__order__product--item:not(:last-child) {
+  margin-bottom: 1.5em;
+}
+
+.ordersPage__order__product--image {
+  flex: 0.2;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.ordersPage__order__product--image img {
+  max-height: 5rem;
+  max-width: 100%;
+}
+
+.ordersPage__order__product--title,
+.ordersPage__order__product--quantity,
+.ordersPage__order__product__btn--container {
+  display: flex;
+}
+
+.ordersPage__order__product--title,
+.ordersPage__order__product--quantity {
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.ordersPage__order__product--title {
+  flex: 0.3;
+}
+
+.ordersPage__order__product--quantity {
+  flex: 0.2;
+}
+
+.ordersPage__order__product__btn--container {
+  flex: 0.3;
+  justify-content: flex-end;
+}
+
+@media only screen and (min-width: 600px) {
+  .ordersPage__order__product--image img {
+    max-height: 8rem;
+  }
+
+  .ordersPage__order--card {
+    padding: 2em;
+  }
+
+  .ordersPage__order__product--title,
+  .ordersPage__order__product--quantity,
+  .ordersPage__order--card p {
+    font-size: 1.1rem;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .ordersPage__order__product--image img {
+    max-height: 10rem;
+  }
+
+  .ordersPage__order__product--title,
+  .ordersPage__order__product--quantity,
+  .ordersPage__order--card p {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (min-width: 1100px) {
+  .ordersPage__order--card {
+    padding: 3em;
+  }
+}

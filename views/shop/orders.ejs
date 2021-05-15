@@ -1,0 +1,47 @@
+<%- include('../includes/head.ejs') %>
+  <link rel="stylesheet" href="/css/forms.css">
+  <link rel="stylesheet" href="/css/orders.css">
+  <link rel="stylesheet" href="/css/product.css">
+</head>
+<body>
+  <%- include ('../includes/navigation.ejs') %>
+
+  <main>
+    <div class="ordersPage__container">
+      <h3>Your orders</h3>
+
+      <div class="ordersPage__orders--container">
+        <% if (orders.length > 0) { %>
+          <% orders.forEach(order => { %>
+            <div class="ordersPage__order--card">
+              <p>Order #<%= order._id %></p>
+              
+              <ul class="ordersPage__order__product--list">
+                <% order.products.forEach(product => { %>
+                  <li class="ordersPage__order__product--item">
+                    <div class="ordersPage__order__product--image">
+                      <img src="<%= product.product.imageUrl %>" alt="iphone">
+                    </div>
+                    <div class="ordersPage__order__product--title"><%= product.product.title %></div>
+                    <div class="ordersPage__order__product--quantity">Qty: <%= product.quantity %></div>
+      
+                    <div class="ordersPage__order__product__btn--container">
+                      <% if (!product.reviewed) { %>
+                        <a href="/admin/review/<%= product.product._id %>?order=<%= order._id %>" class="product__card__btn">Review</a>
+                      <% } %>
+                    </div>
+                  </li>
+                <% }) %>
+              </ul>
+            </div>
+          <% }) %>
+        <% } else { %>
+          <div class="centered mar-top-4">
+            No orders found
+          </div>
+        <% } %>
+    </div>
+  </main>
+
+  <%- include('../includes/footer.ejs') %>
+<%- include('../includes/end.ejs') %>

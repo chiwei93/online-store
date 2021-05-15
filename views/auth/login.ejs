@@ -1,0 +1,52 @@
+<%- include('../includes/head.ejs') %>
+  <link rel="stylesheet" href="/css/forms.css">
+</head>
+<body>
+  <%- include ('../includes/navigation.ejs') %>
+
+  <main>
+    <% if (loginErrorMsg) { %>
+      <div class="alert error active">
+        <%= loginErrorMsg %>
+      </div>
+    <% } %>
+
+    <% if (successMsg) { %>
+      <div class="alert success active">
+        <%= successMsg %>
+      </div>
+    <% } %>
+
+    <form action="/login" method="POST" class="login__form">
+      <h2>Login</h2>
+
+      <div class="signup__form__input--container">
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" class="<%= validationErrors.find(e => e.param === 'email') ? 'error' : '' %>" value="<%= formValues.email %>">
+        <% if (validationErrors.find(e => e.param === 'email')) { %>
+          <p><%= validationErrors.find(e => e.param === 'email').msg %></p>
+        <% } %>
+      </div>
+
+      <div class="signup__form__input--container">
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" class="<%= validationErrors.find(e => e.param === 'password') ? 'error' : '' %>" value="<%= formValues.password %>">
+        <% if (validationErrors.find(e => e.param === 'password')) { %>
+          <p><%= validationErrors.find(e => e.param === 'password').msg %></p>
+        <% } %>
+      </div>
+
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+      <div class="login__form__btn--container">
+        <button class="signup__form__btn--submit">Login</button>
+      </div>
+    </form>
+
+    <div class="forgotten-password__container">
+      Forgot your password? Click <a href="/forgot-password">here</a>.
+    </div>
+  </main>
+
+  <%- include('../includes/footer.ejs') %>
+<%- include('../includes/end.ejs') %>

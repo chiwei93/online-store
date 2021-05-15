@@ -1,0 +1,9 @@
+<% if (product.quantity !== 0) { %>
+  <form action="/add-to-cart" method="POST" class="product__card__form">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <input type="hidden" name="productId" value="<%= product._id %>">
+    <button class="product__card__btn">Add To Cart</button>
+  </form>
+<% } else { %>
+  <div style="margin-left: 2em; color: var(--color-secondary);">Sold Out</div>
+<% } %>

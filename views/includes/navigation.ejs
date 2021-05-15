@@ -1,0 +1,59 @@
+<header>
+  <nav class="nav">
+    <div class="nav__logo">
+      <a href="/">
+        Techie
+      </a>
+    </div>
+    <button class="nav__btn-toggle">
+      <i class="fas fa-bars"></i>
+    </button>
+    <ul class="nav__list">
+      <li class="nav__list-item">
+        <ul class="nav__link-list">
+          <li class="nav__link-list-item">
+            <a href="/" class="<%= path === '/' ? 'nav__link active' : 'nav__link' %>">Home</a>
+          </li>
+          <li class="nav__link-list-item">
+            <a href="/products" class="<%= path === '/products' ? 'nav__link active' : 'nav__link' %>">Products</a>
+          </li>
+          <% if (isAuthenticated) { %>
+            <li class="nav__link-list-item">
+              <a href="/orders" class="<%= path === '/orders' ? 'nav__link active' : 'nav__link' %>">Your Orders</a>
+            </li>
+            <li class="nav__link-list-item">
+              <a href="/admin/products" class="<%= path === '/admin/products' ? 'nav__link active' : 'nav__link' %>">Your products</a>
+            </li>
+          <% } %>
+        </ul>
+      </li>
+      <li class="nav__list-item">
+        <ul class="nav__link-list">
+          <li class="nav__link-list-item">
+            <a href="/cart" class="nav__link--auth nav__link--cart <%= path === '/cart' ? 'active' : '' %>">
+              <i class="fas fa-shopping-cart"></i>
+              <% if (numCartItems > 0) { %>
+                <div class="cart-number"><%= numCartItems %></div>
+              <% } %>
+            </a>
+          </li>
+          <% if (!isAuthenticated) { %>
+            <li class="nav__link-list-item">
+              <a href="/signup" class="nav__link--auth <%= path === '/signup' ? 'active' : '' %>">Sign Up</a>
+            </li>
+            <li class="nav__link-list-item">
+              <a href="/login" class="nav__link--auth nav__link--login">Login</a>
+            </li>
+          <% } else { %>
+            <li class="nav__link-list-item">
+              <form action="/logout" method="POST">
+                <input type="hidden" value="<%= csrfToken %>" name="_csrf">
+                <button class="nav__link--login nav__link--auth">Log Out</button>
+              </form>
+            </li>
+          <% } %>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</header>
