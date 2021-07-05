@@ -259,6 +259,7 @@ exports.postOrder = (req, res, next) => {
 
       return emailTransporter.sendMail({
         to: user.email,
+        from: process.env.FROM_EMAIL,
         subject: 'Order Confirmed',
         html: `
             <p>Your order #${fetchedOrder._id} had been confirmed</p>

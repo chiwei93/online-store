@@ -270,10 +270,11 @@ exports.postForgottenPassword = (req, res, next) => {
           //send email to user
           return emailTransporter.sendMail({
             to: email,
+            from: process.env.FROM_EMAIL,
             subject: 'Reset Password',
             html: `
                 <p>You have requested a password reset.</p>
-                <p>Click <a href="/reset/${user.resetToken}">this link</a> to reset your password.</p>
+                <p>Click <a href="http://leong-node-techie.herokuapp.com/reset/${user.resetToken}">this link</a> to reset your password.</p>
                 <p>Please ignore this message if you did not request a password reset.</p>
               `,
           });
